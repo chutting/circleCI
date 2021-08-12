@@ -15,6 +15,7 @@ jobs:
       - checkout
       - run: npm install
       - run: npm test
+      - run: curl $API_URL
 
   job2:
     docker:
