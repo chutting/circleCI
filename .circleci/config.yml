@@ -28,12 +28,12 @@ workflows:
   version: 2
   parallel:
     jobs:
-      - job1:
-        <<: *only-pre-branches
-      - job2:
-        filters:
-            branches:
-              ignore: master
+      - job1
+        # <<: *only-pre-branches
+      # - job2:
+        # filters:
+        #     branches:
+        #       ignore: master
   serial:
     jobs:
       - job1
