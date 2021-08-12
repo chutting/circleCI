@@ -29,11 +29,11 @@ workflows:
   parallel:
     jobs:
       - job1:
-        <<: *only-pre-branches
+          <<: *only-pre-branches
       - job2:
-        filters:
-            branches:
-              ignore: master
+          filters:
+              branches:
+                ignore: master
   serial:
     jobs:
       - job1
