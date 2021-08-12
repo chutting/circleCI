@@ -30,10 +30,16 @@ workflows:
     jobs:
       - job1:
           <<: *only-pre-branches
+      - approval:
+          type: approval
+          requires:
+            - job1
       - job2:
           filters:
               branches:
                 ignore: master
+          requires:
+            - approval
   serial:
     jobs:
       - job1
