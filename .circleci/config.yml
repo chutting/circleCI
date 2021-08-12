@@ -1,7 +1,7 @@
 only-pre-branches: &only-pre-branches
   filters:
     branches:
-      only: 
+      only:
         - master
         - dev
 
@@ -28,7 +28,7 @@ workflows:
   version: 2
   parallel:
     jobs:
-      - job1
+      - job1:
         <<: *only-pre-branches
       - job2:
         filters:
