@@ -1,9 +1,9 @@
-# only-pre-branches: &only-pre-branches
-#   filters:
-#     branches:
-#       only: 
-#         - master
-#         - dev
+only-pre-branches: &only-pre-branches
+  filters:
+    branches:
+      only: 
+        - master
+        - dev
 
 version: 2
 jobs:
@@ -29,11 +29,11 @@ workflows:
   parallel:
     jobs:
       - job1
-        # <<: *only-pre-branches
-      # - job2:
-        # filters:
-        #     branches:
-        #       ignore: master
+        <<: *only-pre-branches
+      - job2:
+        filters:
+            branches:
+              ignore: master
   serial:
     jobs:
       - job1
