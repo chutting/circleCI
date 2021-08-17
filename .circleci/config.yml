@@ -55,16 +55,6 @@ jobs:
             ls -al
             cd /test | echo 'this is a pipe'
 
-    steps:
-      - run:
-          name: Get env
-          command: echo $CUSTOM_ENV
-      - run:
-          environment:
-            CUSTOM_ENV: run
-          name: Get Env with set env in run
-          command: echo $CUSTOM_ENV
-
 workflows:
   version: 2
   parallel:
