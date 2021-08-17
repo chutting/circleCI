@@ -6,6 +6,12 @@ only-pre-branches: &only-pre-branches
         - dev
 
 version: 2
+executors:
+  my-executor:
+    environment:
+      CUSTOM_ENV: executor
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
 jobs:
   job1:
     docker:
@@ -18,12 +24,46 @@ jobs:
       - run: curl $API_URL
 
   job2:
-    docker:
-      - image: circleci/node:10
+    executor: my-executor
 
     steps:
-      - checkout
-      - run: cat README.md
+      - run:
+          name: Get env
+          command: echo $CUSTOM_ENV
+      - run:
+          environment:
+            CUSTOM_ENV: run
+          name: Get Env with set env in run
+          command: echo $CUSTOM_ENV
+  
+  job3:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - run:
+          name: default shell test
+          command: |
+            set +e
+            echo 'default shell'
+            cd /test
+            echo 'This is the default shell test with set e'
+      - run:
+          name: default shell with pipe
+          command: |
+            set +o pipefail
+            pwd
+            ls -al
+            cd /test | echo 'this is a pipe'
+
+    steps:
+      - run:
+          name: Get env
+          command: echo $CUSTOM_ENV
+      - run:
+          environment:
+            CUSTOM_ENV: run
+          name: Get Env with set env in run
+          command: echo $CUSTOM_ENV
 
 workflows:
   version: 2
