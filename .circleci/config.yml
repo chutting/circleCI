@@ -5,13 +5,14 @@ only-pre-branches: &only-pre-branches
         - master
         - dev
 
-version: 2
 executors:
   my-executor:
     environment:
       CUSTOM_ENV: executor
     docker:
       - image: circleci/ruby:2.5.1-node-browsers
+
+version: 2
 jobs:
   job1:
     docker:
