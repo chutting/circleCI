@@ -25,7 +25,10 @@ jobs:
       - run: curl $API_URL
 
   job2:
-    executor: my-executor
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+    environment:
+      CUSTOM_ENV: executor
     steps:
       - run:
           name: Get env
