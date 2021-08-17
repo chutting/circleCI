@@ -5,7 +5,7 @@ only-pre-branches: &only-pre-branches
         - master
         - dev
 
-version: 2
+version: 2.1
 executors:
   my-executor:
     docker:
@@ -25,10 +25,7 @@ jobs:
       - run: curl $API_URL
 
   job2:
-    docker:
-      - image: circleci/ruby:2.5.1-node-browsers
-    environment:
-      CUSTOM_ENV: executor
+    executor: my-executor
     steps:
       - run:
           name: Get env
